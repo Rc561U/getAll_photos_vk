@@ -19,7 +19,7 @@ def get_photo_data(TOKEN, user_id, offset=0, count=200):
 
 
 def get_photo(data):
-    #data = get_photo_data()
+    # data = get_photo_data()
     count_photo = data["response"]["count"]
     i = 0
     count = 200
@@ -46,29 +46,25 @@ def get_photo(data):
         print(len(photos))
 
 
-def main():
-    get_photo()
-
-
 if __name__ == '__main__':
-
-    #TOKEN = input('Enter your TOKEN: ')
-	TOKEN = 'vk1.a.VZQ_fvUYUNxRqcNgsE7u6O1st_EyGv8_os-GdC6iw7fXpHz6v8ymkJ0mOI1C4FD89g0tgRWc7lynDf0PoVnxLORyybP_BpwXQT9a839_9bJKQXPL9pXVG_Gz1DU17H8LbctYW8O_x3Y4qw_mETy04oHGTjbDTjtlE0eqyfyuLy9K_qcmMvgoOXIat6gIyPXe'
-    
-	user_choose = int(input('If you want to download user photo press 1 \nIf you want to download group photo press 2\n'))
-    
-	if user_choose == 1:
-		user_id = input('Enter your user_id: ')
-		data = get_photo_data(TOKEN, user_id)
-		get_photo(data)
-
-
-	if user_choose == 2:
-		group_id = '-' + input('Enter your group_id: ')
-		data = get_photo_data(TOKEN, group_id)
-		get_photo(data)
-
-
-# 38091858
-# 67830823
-# vk1.a.VZQ_fvUYUNxRqcNgsE7u6O1st_EyGv8_os-GdC6iw7fXpHz6v8ymkJ0mOI1C4FD89g0tgRWc7lynDf0PoVnxLORyybP_BpwXQT9a839_9bJKQXPL9pXVG_Gz1DU17H8LbctYW8O_x3Y4qw_mETy04oHGTjbDTjtlE0eqyfyuLy9K_qcmMvgoOXIat6gIyPXe
+    TOKEN = input('Enter your TOKEN: ')
+    user_choose = int(input('If you want to download user photos, press - 1\nIf you want to download group photos, press - 2\n'))
+    succsess = 'download completed successfully'
+    fail = 'download failed'
+    if user_choose == 1:
+        user_id = input('Enter your user_id: ')
+        try:
+            data = get_photo_data(TOKEN, user_id)
+            get_photo(data)
+            print(succsess)
+        except:
+            print(fail)
+    if user_choose == 2:
+        try:
+            group_id = '-' + input('Enter your group_id: ')
+            data = get_photo_data(TOKEN, group_id)
+            get_photo(data)
+            print(succsess)
+        except:
+            print(fail)
+            
